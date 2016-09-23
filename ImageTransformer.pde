@@ -1,14 +1,20 @@
-//For this programm to work there must be a folder named art.
-//Inside it there must be two pictures named "firstPic.jpg" and "secondPic.jpg"
+//
+// For this programm to work there must be a folder named art.
+// Inside it there must be two pictures named "firstPic.jpg" and "secondPic.jpg"
+//
+// With a key press the algorithm toggles
+//
 
 int useTransformer = 0;
+String pathPixels = "art/vangogh.jpg";
+String pathGoal = "art/background.jpg";
 ImageTransformerSwap itSwp;
 ImageTransformerSelection itSel;
 
 void setup() {
   size(720, 320);
-  itSwp = new ImageTransformerSwap("art/vangogh.jpg", "art/background.jpg", 50000);
-  itSel = new ImageTransformerSelection("art/vangogh.jpg", "art/background.jpg", 100);
+  itSwp = new ImageTransformerSwap(pathPixels, pathGoal, 50000);
+  itSel = new ImageTransformerSelection(pathPixels, pathGoal, 100);
 }
 
 void draw() {
