@@ -45,3 +45,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# All pictures due to potential copyright / distribution issues
+*.jpg
+*.png
