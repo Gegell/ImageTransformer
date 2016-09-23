@@ -6,15 +6,17 @@
 //
 
 int useTransformer = 0;
+int swpActions = 500000;
+int selActions = 100;
 String pathPixels = "art/vangogh.jpg";
-String pathGoal = "art/background.jpg";
+String pathGoal = "art/monalisa.jpg";
 ImageTransformerSwap itSwp;
 ImageTransformerSelection itSel;
 
 void setup() {
   size(720, 320);
-  itSwp = new ImageTransformerSwap(pathPixels, pathGoal, 50000);
-  itSel = new ImageTransformerSelection(pathPixels, pathGoal, 100);
+  itSwp = new ImageTransformerSwap(pathPixels, pathGoal, swpActions);
+  itSel = new ImageTransformerSelection(pathPixels, pathGoal, selActions);
 }
 
 void draw() {
@@ -29,10 +31,10 @@ void draw() {
 
 void keyPressed() {
   if (useTransformer == 0) {
-    itSel = new ImageTransformerSelection("art/vangogh.jpg", "art/background.jpg", 100);
+    itSel = new ImageTransformerSelection(pathPixels, pathGoal, selActions);
     useTransformer = 1;
   } else if (useTransformer == 1) {
-    itSwp = new ImageTransformerSwap("art/vangogh.jpg", "art/background.jpg", 50000);
+    itSwp = new ImageTransformerSwap(pathPixels, pathGoal, swpActions);
     useTransformer = 0;
   }
 }
