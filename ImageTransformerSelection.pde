@@ -10,10 +10,10 @@ class ImageTransformerSelection {
 
   ImageTransformerSelection(String pathFirst, String pathSecond, int actionsPerUpdate) {
     start = loadImage(pathFirst);
-    start.resize(240, 320);
+    start.resize(imgWidth, imgHeight);
     goal = loadImage(pathSecond);
-    goal.resize(240, 320);
-    result = createImage(240, 320, RGB);
+    goal.resize(imgWidth, imgHeight);
+    result = createImage(imgWidth, imgHeight, RGB);
     available = getPixelArrayList(start);
     compareto = getPixelArrayList(goal);
     this.actionsPerUpdate = actionsPerUpdate;
@@ -50,8 +50,8 @@ class ImageTransformerSelection {
 
   void display() {
     image(start, 0, 0);
-    image(result, 240, 0);
-    image(goal, 480, 0);
+    image(result, imgWidth, 0);
+    image(goal, imgWidth * 2, 0);
     surface.setTitle("Image Transformer - " + (100 - (available.size() * 100 / result.pixels.length)) + "% - " + int(frameRate*10)/10.0 + " fps");
   }
 

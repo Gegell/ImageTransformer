@@ -2,21 +2,24 @@ class ImageTransformerSwap {
   //This algorithm swaps two pixels and lokks whether they fit better
   int actionsPerUpdate;
   int swapsPerformed;
+  int swapsLastPerformed;
   PImage start;
   PImage goal;
   PImage result;
 
   ImageTransformerSwap(String pathFirst, String pathSecond, int actionsPerUpdate) {
     start = loadImage(pathFirst);
-    start.resize(240, 320);
+    start.resize(imgWidth, imgHeight);
     goal = loadImage(pathSecond);
-    goal.resize(240, 320);
+    goal.resize(imgWidth, imgHeight);
     result = start.copy();
     this.actionsPerUpdate = actionsPerUpdate;
     swapsPerformed = 0;
+    swapsLastPerformed = 100;
   }
 
   void update() {
+    swapsLastPerformed = 0;
     for (int j = 0; j < actionsPerUpdate; j++) {
       swapPixel();
     }
@@ -44,9 +47,9 @@ class ImageTransformerSwap {
 
   void display() {
     image(start, 0, 0);
-    image(result, 240, 0);
-    image(goal, 480, 0);
-    surface.setTitle("Image Transformer - " + swapsPerformed + " swaps - " + int(frameRate*10)/10.0 + " fps");
+    image(result, imgWidth, 0);
+    image(goal, imgWidth * 2, 0);
+    surface.setTitle("Image Transformer - " + swapsPerformed + " swaps - " + swapsLastPerformed + " last - "+ int(frameRate*10)/10.0 + " fps");
   }
 
   float dstSqr(float x1, float y1, float z1, float x2, float y2, float z2) {
