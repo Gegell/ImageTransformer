@@ -42,6 +42,10 @@ class ImageTransformerSwap {
       result.pixels[indexB] = cA;
       result.updatePixels();
       swapsPerformed++;
+      swapsLastPerformed++;
+      if (animation) {
+        a.swapPix(indexA ,indexB);
+      }
     }
   }
 

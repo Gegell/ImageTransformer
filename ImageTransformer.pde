@@ -13,9 +13,11 @@ int imgHeight = 320*2;
 String pathPixels = "vangogh.jpg";
 String pathGoal = "background.jpg";
 boolean automated = false;
+boolean animation = false;
 ImageTransformerSwap itSwp;
 ImageTransformerSelection itSel;
 Automation auto;
+Animation a;
 
 void setup() {
   size(1440, 640);
@@ -26,6 +28,9 @@ void setup() {
     pathGoal = "art/" + pathGoal;
     itSwp = new ImageTransformerSwap(pathPixels, pathGoal, swpActions);
     itSel = new ImageTransformerSelection(pathPixels, pathGoal, selActions);
+  }
+  if (animation) {
+    a = new Animation(itSwp.start);
   }
 }
 
@@ -77,6 +82,14 @@ void trySave(PImage output, String folder, String name) {
   if (!fileExists(newPath)) {
     output.save(newPath);
     println("Saved to: " + newPath);
+    if (animation) {
+      a.genFile();
+      /*PImage input = loadImage(pathPixels);
+      input.resize(imgWidth, imgHeight);
+      input.save("animation/picin.png");*/
+      itSwp.start.save("animation/picin.png");
+      output.save("animation/picout.png");
+    }
   } else {
     println("Couldn't save");
   }
